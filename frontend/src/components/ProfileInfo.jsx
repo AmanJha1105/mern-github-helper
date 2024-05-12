@@ -4,22 +4,25 @@ import { RiGitRepositoryFill, RiUserFollowFill, RiUserFollowLine } from "react-i
 import { FaXTwitter } from "react-icons/fa6";
 import { TfiThought } from "react-icons/tfi";
 import { FaEye } from "react-icons/fa";
+import { formatMemberSince } from '../utils/functions';
 
-const ProfileInfo = () => {
-	const userProfile = {
-		avatar_url: "https://ps.w.org/user-avatar-reloaded/assets/icon-256x256.png?rev=2540745",
-		bio: "👨🏻‍💻👨🏻‍💻👨🏻‍💻",
-		email: "johndoe@gmail.com",
-		followers: 100,
-		following: 200,
-		html_url: "https://github.com/burakorkmez",
-		location: "Somewhere, Earth",
-		name: "John Doe",
-		public_gists: 100,
-		public_repos: 100,
-		twitter_username: "johndoe",
-		login: "johndoe",
-	};
+const ProfileInfo = ({userProfile}) => {
+	// const userProfile = {
+	// 	avatar_url: "https://ps.w.org/user-avatar-reloaded/assets/icon-256x256.png?rev=2540745",
+	// 	bio: "👨🏻‍💻👨🏻‍💻👨🏻‍💻",
+	// 	email: "johndoe@gmail.com",
+	// 	followers: 100,
+	// 	following: 200,
+	// 	html_url: "https://github.com/burakorkmez",
+	// 	location: "Somewhere, Earth",
+	// 	name: "John Doe",
+	// 	public_gists: 100,
+	// 	public_repos: 100,
+	// 	twitter_username: "johndoe",
+	// 	login: "johndoe",
+	// };
+
+    const memberSince= formatMemberSince(userProfile?.created_at);
 
 	return (
 		<div className='lg:w-1/3 w-full flex flex-col gap-2 md:sticky md:top-10'>
@@ -75,7 +78,7 @@ const ProfileInfo = () => {
 				{/* Member Since Date */}
 				<div className='my-2'>
 					<p className='text-gray-600 font-bold text-sm'>Member since</p>
-					<p className=''>21 Sep, 2023</p>
+					<p className=''>{memberSince}</p>
 				</div>
 
 				{/* Email Address */}
