@@ -1,8 +1,9 @@
 export const getUserProfileAndRepos=async(req,res)=>{
 
-    const {username}=req.params;
+    let {username}=req.params;
 
    try {
+    username=username.trim();
       const userRes= await fetch(`https://api.github.com/users/${username}`,{
         headers:{
           authorization: `token ${process.env.GITHUB_API_KEY}`,
