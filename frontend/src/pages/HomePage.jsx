@@ -52,7 +52,7 @@ const HomePage = () => {
   },[]
 )
   useEffect(()=>{
-    getUserProfileAndRepos();
+    if(authUser)getUserProfileAndRepos();
   },[getUserProfileAndRepos])
 
   const onSearch = async(e,username)=>{
