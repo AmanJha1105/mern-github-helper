@@ -27,10 +27,9 @@ const HomePage = () => {
 
   const getUserProfileAndRepos=useCallback(async(username="AmanJha1105")=>{
     setLoading(true);
-    console.log(authuser.username);
     try{
 
-      const res = await fetch(`/api/users/profile/${authUser.username}`);
+      const res = await fetch(`/api/users/profile/${username}`);
       const {repos,userProfile}=await res.json();
 
       repos.sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
@@ -52,7 +51,7 @@ const HomePage = () => {
   },[]
 )
   useEffect(()=>{
-    if(authUser)getUserProfileAndRepos();
+    if(authUser)getUserProfileAndRepos(authUser);
   },[getUserProfileAndRepos])
 
   const onSearch = async(e,username)=>{
@@ -86,7 +85,8 @@ const HomePage = () => {
 
   }
 
-	return (
+	if(authUser){
+    return (
 		<div className='m-4'>
 			<Search onSearch={onSearch}/>
 			{repos.length>0 && <SortRepos onSort={onSort} sortType={sortType}/>}
@@ -97,6 +97,7 @@ const HomePage = () => {
 			</div>
 		</div>
 	);
+ }
 };
 
 export default HomePage
