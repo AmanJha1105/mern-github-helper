@@ -1,11 +1,14 @@
 import { MdLogout } from "react-icons/md";
 import { useAuthContext } from "../context/AuthContext";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 // TODO Implement Logout functionality
 
 const Logout = () => {
 
     const {authUser,setAuthUser} =useAuthContext();
+
+	const navigate = useNavigate();
 
 	const handleLogout =async() =>{
        try {
@@ -13,6 +16,7 @@ const Logout = () => {
 		 const data = await res.json();
 		 console.log(data);
 		 setAuthUser(null);
+		 navigate("/login");
 	   } catch (error) {
 		  toast.error(error.message);
 	   }
