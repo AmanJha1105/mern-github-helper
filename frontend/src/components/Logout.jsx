@@ -2,7 +2,6 @@ import { MdLogout } from "react-icons/md";
 import { useAuthContext } from "../context/AuthContext";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-// TODO Implement Logout functionality
 
 const Logout = () => {
 
@@ -16,6 +15,7 @@ const Logout = () => {
 		 const data = await res.json();
 		 console.log(data);
 		 setAuthUser(null);
+		 toast.info("You are logged out. You can log in again");
 		 navigate("/login");
 	   } catch (error) {
 		  toast.error(error.message);
