@@ -13,7 +13,7 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   const {authUser}=useAuthContext();
-  
+
   useEffect(()=>{
     if(!authUser){
       navigate("/login");
@@ -55,7 +55,7 @@ const HomePage = () => {
   },[]
 )
   useEffect(()=>{
-    if(authUser)getUserProfileAndRepos(authUser);
+    if(authUser)getUserProfileAndRepos(authUser.username);
   },[getUserProfileAndRepos])
 
   const onSearch = async(e,username)=>{
