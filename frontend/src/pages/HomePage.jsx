@@ -13,9 +13,13 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   const {authUser}=useAuthContext();
-  if(!authUser){
-    navigate("/login");
-  }
+  
+  useEffect(()=>{
+    if(!authUser){
+      navigate("/login");
+    }
+  },[])
+  
 
 
 
