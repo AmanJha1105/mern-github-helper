@@ -15,7 +15,19 @@ const Logout = () => {
 		 const data = await res.json();
 		 console.log(data);
 		 setAuthUser(null);
-		 toast.info("You are logged out. You can log in again");
+		 toast.custom(
+			<div
+			  style={{
+				fontSize: "17px",
+				border: "1px solid #0065FE",
+				padding: "16px",
+				color: "#3cb371",
+				borderRadius: "10px",
+			  }}
+			>
+			  Logged out. You can log in again.
+			</div>
+		 );
 		 navigate("/login");
 	   } catch (error) {
 		  toast.error(error.message);
