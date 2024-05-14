@@ -5,8 +5,19 @@ import ProfileInfo from '../components/ProfileInfo';
 import Repos from '../components/Repos';
 import toast from 'react-hot-toast';
 import Spinner from '../components/Spinner';
+import { useAuthContext } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
+
+  const navigate = useNavigate();
+
+  const {authUser}=useAuthContext();
+  if(!authUser){
+    navigate("/login");
+  }
+
+
 
   const [userProfile,setuserProfile]=useState(null);
   const [repos,setRepos]=useState([]);
@@ -16,17 +27,18 @@ const HomePage = () => {
 
   const getUserProfileAndRepos=useCallback(async(username="AmanJha1105")=>{
     setLoading(true);
+    console.log(authuser.username);
     try{
 
-      const res = await fetch(`/api/users/profile/${username}`);
+      const res = await fetch(`/api/users/profile/${authUser.username}`);
       const {repos,userProfile}=await res.json();
 
       repos.sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
 
       setRepos(repos);
       setuserProfile(userProfile);
-      console.log("userProfile",userProfile);
-      console.log("repos",repos);
+      // console.log("userProfile",userProfile);
+      // console.log("repos",repos);
       return {userProfile,repos};
 
       
