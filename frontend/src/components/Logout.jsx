@@ -18,7 +18,7 @@ const Logout = () => {
 		 toast.success( "Logged out. You can log in again." );
 		 navigate("/login");
 	   } catch (error) {
-		  toast.error(error.message);
+		  toast.error("Error",error.message);
 	   }
 	}
 
